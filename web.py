@@ -139,11 +139,9 @@ elif section == "Visualizations":
 
     # Average Sale Price by Neighborhood
     st.subheader("🏘️ Average Sale Price by Neighborhood")
-
     neigh_avg = df.groupby('Neighborhood')['SalePrice'].mean().sort_values(ascending=False)
-
     fig, ax = plt.subplots(figsize=(14, 6))
-    sns.barplot(x=neigh_avg.index, y=neigh_avg.values, palette='skyblue', ax=ax)
+    sns.barplot(x=neigh_avg.index, y=neigh_avg.values, color='skyblue', ax=ax)
     plt.title("Average Sale Price by Neighborhood", fontsize=14, fontweight='bold')
     plt.xlabel("Neighborhood")
     plt.ylabel("Average Sale Price")
