@@ -82,14 +82,16 @@ else:
 
 # Average Sale Price by Neighborhood
 if 'Neighborhood' in df.columns:
-    plt.figure(figsize=(12,6))
-    neigh_avg = df.groupby('Neighborhood')['SalePrice'].mean().sort_values(ascending=False).head(10)
-    sns.barplot(x=neigh_avg.index, y=neigh_avg.values)
-    plt.title("Top 10 Neighborhoods by Average Sale Price", fontsize=14, fontweight='bold')
+    plt.figure(figsize=(14,6))
+    neigh_avg = df.groupby('Neighborhood')['SalePrice'].mean().sort_values(ascending=False)
+    sns.barplot(x=neigh_avg.index, y=neigh_avg.values, palette='skyblue')
+    plt.title("Average Sale Price by Neighborhood", fontsize=14, fontweight='bold')
     plt.xlabel("Neighborhood")
     plt.ylabel("Average Sale Price")
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
     plt.show()
+
 
 
 # Average Sale Price Over the Years

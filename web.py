@@ -138,14 +138,17 @@ elif section == "Visualizations":
         st.warning("'SalePrice' column not found in the dataset.")
 
     # Average Sale Price by Neighborhood
-    if 'Neighborhood' in df.columns:
-        st.subheader("Top 10 Neighborhoods by Average Sale Price")
-        fig, ax = plt.subplots(figsize=(12, 6))
-        neigh_avg = df.groupby('Neighborhood')['SalePrice'].mean().sort_values(ascending=False).head(10)
-        sns.barplot(x=neigh_avg.index, y=neigh_avg.values, ax=ax, color='teal')
-        ax.set_title("Top 10 Neighborhoods by Average Sale Price")
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
-        st.pyplot(fig)
+    st.subheader("🏘️ Average Sale Price by Neighborhood")
+
+    neigh_avg = df.groupby('Neighborhood')['SalePrice'].mean().sort_values(ascending=False)
+
+    fig, ax = plt.subplots(figsize=(14, 6))
+    sns.barplot(x=neigh_avg.index, y=neigh_avg.values, palette='skyblue', ax=ax)
+    plt.title("Average Sale Price by Neighborhood", fontsize=14, fontweight='bold')
+    plt.xlabel("Neighborhood")
+    plt.ylabel("Average Sale Price")
+    plt.xticks(rotation=45, ha='right')
+    st.pyplot(fig)
 
     # Average Sale Price Over the Years
     if 'YearBuilt' in df.columns and 'SalePrice' in df.columns:
